@@ -4,15 +4,16 @@ from app.routes import router
 
 app = FastAPI(title="Hiredly Backend API")
 
-# 👇 Add CORS middleware
+# Allow Netlify frontend and localhost
 origins = [
-    "https://gleaming-kulfi-152438.netlify.app",  # Your Netlify frontend
-    "http://localhost:3000"  # For local development
+    "https://gleaming-kulfi-152438.netlify.app",
+    "http://localhost:3000",
+    "*"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins,  # 👈 Allow all origins for testing ("*")
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
